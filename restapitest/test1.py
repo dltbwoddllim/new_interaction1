@@ -1,3 +1,4 @@
+
 import requests
 import json
 import threading
@@ -7,14 +8,7 @@ import random
 url = 'http://localhost:8080/userinfo'  # Replace with your local server URL
 
 # Function to send a request
-def send_request():
-    # Generate random data
-    data = {
-        "nickname": "John",
-        "major": 1,
-        "mbti": 1, 
-    }
-    
+def send_request(data):
     # Convert the data to JSON format
     json_data = json.dumps(data)
     headers = {'Content-Type': 'application/json'}
@@ -27,15 +21,18 @@ def send_request():
     else:
         print("Request failed with status code:", response.status_code)
 
-# Create a list to hold the threads
-threads = []
-
-# Create and start 10 threads
-for _ in range(5):
-    thread = threading.Thread(target=send_request)
+# Generate and send requests
+for i in range(101,110):
+    # Generate random data
+    data = {
+        "nickname": "User" + str(i+1),
+        "major": random.randint(1, 10),
+        "mbti": random.randint(1, 10)
+    }
+    
+    # Send the request in a new thread
+    thread = threading.Thread(target=send_request, args=(data,))
     thread.start()
-    threads.append(thread)
-
-# Wait for all threads to complete
-for thread in threads:
     thread.join()
+
+print("All requests completed.")

@@ -4,16 +4,15 @@ import threading
 import random
 
 # Set the URL of the local server
-url = 'http://localhost:8080/user'  # Replace with your local server URL
+url = 'http://localhost:8080/userinfo'  # Replace with your local server URL
 
 # Function to send a request
 def send_request():
     # Generate random data
     data = {
         "nickname": "John",
-        "major": "Computer Science",
-        "mbti": "INTJ", 
-        "hobbies": "playing guitar"
+        "major": 1,
+        "mbti": 1, 
     }
     
     # Convert the data to JSON format
@@ -32,7 +31,7 @@ def send_request():
 threads = []
 
 # Create and start 10 threads
-for _ in range(100):
+for _ in range(5):
     thread = threading.Thread(target=send_request)
     thread.start()
     threads.append(thread)

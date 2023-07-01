@@ -7,7 +7,6 @@ const App = () => {
     <div>
       <UserForm />
       <PartnerForm />
-      {/* <Partners/> */}
     </div>
   );
 };

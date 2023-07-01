@@ -37,14 +37,9 @@ const UserForm = () => {
     // const jsonData = JSON.stringify(userData);
   // Set headers for the request
   const headers = {
-    'Content-Type': 'application/json'
-    // 'Access-Control-Allow-Origin': 'http://localhost:3000', // Replace with your React app's origin
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:3000'// Replace with your React app's origin
   };
-    // Send the user data as a POST request to '/userinfo'
-    // using your preferred HTTP client (e.g., axios, fetch API)
-    // Replace <YOUR_API_ENDPOINT> with your actual API endpoint
-    // and include appropriate headers and body data.
-    // For example, using axios:
 
     axios.post('http://localhost:8080/userinfo', userData, { headers })
       .then((response) => {

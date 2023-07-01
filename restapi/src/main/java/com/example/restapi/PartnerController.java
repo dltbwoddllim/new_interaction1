@@ -5,15 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.OPTIONS})
 public class PartnerController {
 
     private final InfoRepository infoRepository;
@@ -24,11 +21,7 @@ public class PartnerController {
     }
 
     @GetMapping("/partner")
-    public ResponseEntity<java.lang.String> searchUser(@RequestBody info information) {
-        // You can access the values received from the request in the 'user' object
-
-        Integer major = information.getMajor();
-        Integer mbti = information.getMbti();
+    public ResponseEntity<java.lang.String> searchUser(@RequestParam Integer major, @RequestParam Integer mbti) {
 
         // Output the received values
         List<info> result = infoRepository.findByMajorAndMbti(major, mbti);

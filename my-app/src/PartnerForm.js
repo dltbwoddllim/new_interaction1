@@ -4,6 +4,9 @@ import axios from 'axios';
 const PartnerForm = () => {
     const [selectedMajors, setSelectedMajors] = useState([]);
     const [selectedMbti, setSelectedMbti] = useState([]);
+    const [nicknames, setNicknames] = useState([]);
+    const [majors, setMajors] = useState([]);
+    const [Mbtis, setMbtis] = useState([]);
 
     const majorOptions = [1, 2, 3];
     const mbtiOptions = [1, 2, 3];
@@ -24,27 +27,26 @@ const PartnerForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const userData = {
-            major: parseInt(selectedMajors, 10),
-            mbti: parseInt(selectedMbti, 10),
-          };
         const headers = {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:3000/', // Replace with your React app's origin
-          };
-            // Send the user data as a POST request to '/userinfo'
-            // using your preferred HTTP client (e.g., axios, fetch API)
-            // Replace <YOUR_API_ENDPOINT> with your actual API endpoint
-            // and include appropriate headers and body data.
-            // For example, using axios:
-        
-            axios.post('http://localhost:8080/partner', userData, { headers })
-              .then((response) => {
-                // Handle success response
-              })
-              .catch((error) => {
+            'Access-Control-Allow-Origin': 'http://localhost:3000' // Replace with your React app's origin
+        };
+
+        axios.get('http://localhost:8080/partner', {
+            headers,
+            params: {
+                major: parseInt(selectedMajors, 10),
+                mbti: parseInt(selectedMbti, 10),
+            },
+        })
+            .then((response) => {
+                setNicknames(response.data.map((item) => item.nickname)); // Extract the nicknames from the response data
+                setMajors(response.data.map((item) => item.major)); // Extract the nicknames from the response data
+                setMbtis(response.data.map((item) => item.mbti)); // Extract the nicknames from the response data
+            })
+            .catch((error) => {
                 // Handle error response
-              });
+            });
     };
 
     return (
@@ -80,6 +82,21 @@ const PartnerForm = () => {
             <button type="button" onClick={handleSubmit}>
                 Submit
             </button>
+            <div>
+                <div>
+                    {nicknames.map((nickname, index) => (
+                        <React.Fragment key={nickname}>
+                            <button>{nickname}</button>
+                            <span>&nbsp;</span>
+                            <button>{Mbtis[index]}</button>
+                            <span>&nbsp;</span>
+                            <button>{majors[index]}</button>
+                            <br />
+                        </React.Fragment>
+                    ))}
+                </div>
+
+            </div>
         </form>
     );
 };

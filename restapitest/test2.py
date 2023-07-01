@@ -3,19 +3,16 @@ import random
 import json
 
 def send_request(major, mbti):
-    url = 'http://localhost:8080/partner'   # Replace with the actual server URL
-    data = {
-        "nickname" : "s",
-        "major": major,
-        "mbti": mbti
+    url = 'http://localhost:8080/partner'   # 실제 서버 URL로 변경해주세요
+    params = {
+        "major": 3,
+        "mbti": 3
     }
-    print(data)
-    json_data = json.dumps(data)
+    print(params)
 
     headers = {'Content-Type': 'application/json'}
 
-    response = requests.get(url, data=json_data, headers=headers)
-
+    response = requests.get(url, params=params, headers=headers)
     if response.status_code == 201:
         user_info_list = response.json()
         for user_info in user_info_list:

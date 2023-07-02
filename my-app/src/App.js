@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div>
       <UserForm />
-      <PartnerForm />
+      {/* <PartnerForm /> */}
     </div>
   );
 };

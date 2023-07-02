@@ -1,5 +1,7 @@
-package com.example.restapi;
+package com.example.restapi.controller;
 
+import com.example.restapi.entity.UserInfoEntity;
+import com.example.restapi.repository.UserInfoRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.OPTIONS})
 public class PartnerController {
 
-    private final InfoRepository infoRepository;
+    private final UserInfoRepository infoRepository;
 
     @Autowired
-    public PartnerController(InfoRepository infoRepository) {
+    public PartnerController(UserInfoRepository infoRepository) {
         this.infoRepository = infoRepository;
     }
 
@@ -24,8 +26,8 @@ public class PartnerController {
     public ResponseEntity<java.lang.String> searchUser(@RequestParam Integer major, @RequestParam Integer mbti) {
 
         // Output the received values
-        List<info> result = infoRepository.findByMajorAndMbti(major, mbti);
-        for (info info : result) {
+        List<UserInfoEntity> result = infoRepository.findByMajorAndMbti(major, mbti);
+        for (UserInfoEntity info : result) {
             System.out.println(info.getNickname().toString());
             System.out.println(info.getMajor().toString());
             System.out.println(info.getMbti().toString());

@@ -1,9 +1,9 @@
-package com.example.restapi;
+package com.example.restapi.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-public class info {
+public class UserInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,12 +15,11 @@ public class info {
     @Column(nullable = false)
 
     private Integer mbti;
-    public info() {
+    public UserInfoEntity() {
 
     }
 
-    public info(String nickname, Integer major, Integer mbti) {
-        System.out.println("3333333");
+    public UserInfoEntity(String nickname, Integer major, Integer mbti) {
         this.nickname = nickname;
         this.major = major;
         this.mbti = mbti;

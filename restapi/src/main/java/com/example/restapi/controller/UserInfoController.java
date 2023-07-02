@@ -1,4 +1,6 @@
-package com.example.restapi;
+package com.example.restapi.controller;
+import com.example.restapi.entity.UserInfoEntity;
+import com.example.restapi.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
-public class userinfoController {
+public class UserInfoController {
 
-    private final InfoRepository infoRepository;
+    private final UserInfoRepository infoRepository;
 
     @Autowired
-    public userinfoController(InfoRepository infoRepository) {
+    public UserInfoController(UserInfoRepository infoRepository) {
         this.infoRepository = infoRepository;
     }
 
     @PostMapping ("/userinfo")
-    public ResponseEntity<String> createUser(@RequestBody info information) {
+    public ResponseEntity<String> createUser(@RequestBody UserInfoEntity information) {
         // You can access the values received from the request in the 'user' object
 
         String nickname = information.getNickname();

@@ -10,9 +10,9 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        System.out.println("1111111111111");
         registry.addHandler(new ChatHandler(), "/chat")
-                .setAllowedOrigins("*")
-                .withSockJS();
+                .setAllowedOrigins("http://localhost:3000");
     }
 
 

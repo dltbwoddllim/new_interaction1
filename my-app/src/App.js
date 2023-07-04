@@ -1,7 +1,7 @@
 import './App.css';
 import UserForm from './UserForm';
 import PartnerForm from './PartnerForm';
-import ChatComponent from './chat';
+import ChatComponent from './ChatComponentforTest';
 
 const App = () => {
   return (

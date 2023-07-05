@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 function ChatComponent() {
   const [sockets, setSockets] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     // Function to create a new WebSocket connection
@@ -14,6 +16,7 @@ function ChatComponent() {
 
       newSocket.onmessage = (event) => {
         console.log('Received message:', event.data);
+        setMessages((prevMessages) => [...prevMessages, event.data]);
       };
 
       newSocket.onclose = () => {
@@ -23,8 +26,8 @@ function ChatComponent() {
       return newSocket;
     };
 
-    // Create 100 WebSocket connections
-    const newSockets = Array.from({ length: 100 }, () => createWebSocket());
+    // Create 1000 WebSocket connection
+    const newSockets = Array.from({ length: 1000 }, () => createWebSocket());
 
     // Save the WebSocket instances in state
     setSockets(newSockets);
@@ -35,20 +38,33 @@ function ChatComponent() {
     };
   }, []);
 
-  const sendMessage = (message) => {
+  const sendMessage = () => {
+    if (!inputValue.trim()) {
+      return;
+    }
+
     sockets.forEach((socket) => {
       if (socket.readyState === WebSocket.OPEN) {
-        socket.send(message);
+        socket.send(inputValue);
       }
     });
+
+    setInputValue('');
   };
 
   return (
     <div>
-      {/* Your chat component UI */}
-      <button onClick={() => sendMessage('Hello, server!')}>
-        Send Message
-      </button>
+      <div>
+        {messages.map((message, index) => (
+          <div key={index}>{message}</div>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <button onClick={sendMessage}>Send Message</button>
     </div>
   );
 }

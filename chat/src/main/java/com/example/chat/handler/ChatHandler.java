@@ -22,11 +22,14 @@ public class ChatHandler extends TextWebSocketHandler {
     }
 
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        System.out.println("handleTextMessage"+session+"message"+message);
         String msg = message.getPayload();
-        session.sendMessage(new TextMessage("Response to " + msg));
-        System.out.println(msg);
-        System.out.println("실행");
+        String response = "Response to " + msg;
+
+        for (WebSocketSession s : sessions) {
+            if (s.isOpen()) {
+                s.sendMessage(new TextMessage(response));
+            }
+        }
     }
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {

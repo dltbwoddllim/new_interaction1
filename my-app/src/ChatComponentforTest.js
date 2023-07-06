@@ -8,7 +8,7 @@ function ChatComponent() {
   useEffect(() => {
     // Function to create a new WebSocket connection
     const createWebSocket = () => {
-      const newSocket = new WebSocket('ws://localhost:8080/chat');
+      const newSocket = new WebSocket('ws://localhost:8080/Groupchat');
 
       newSocket.onopen = () => {
         console.log('WebSocket connection established');
@@ -27,7 +27,7 @@ function ChatComponent() {
     };
 
     // Create 1000 WebSocket connection
-    const newSockets = Array.from({ length: 1000 }, () => createWebSocket());
+    const newSockets = Array.from({ length: 1 }, () => createWebSocket());
 
     // Save the WebSocket instances in state
     setSockets(newSockets);

@@ -1,7 +1,7 @@
 package com.example.restapi.controller;
 
-import com.example.restapi.entity.UserInfoEntity;
-import com.example.restapi.repository.UserInfoRepository;
+import com.example.restapi.data.entity.UserInfoEntity;
+import com.example.restapi.data.repository.UserInfoRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

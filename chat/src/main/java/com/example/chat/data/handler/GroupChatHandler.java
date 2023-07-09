@@ -1,4 +1,4 @@
-package com.example.chat.handler;
+package com.example.chat.data.handler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;

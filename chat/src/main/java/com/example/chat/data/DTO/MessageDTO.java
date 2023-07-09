@@ -1,4 +1,4 @@
-package com.example.chat.DTO;
+package com.example.chat.data.DTO;
 
 public class MessageDTO {
     private String from;

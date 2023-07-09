@@ -1,6 +1,6 @@
 package com.example.chat.config;
 
-import com.example.chat.handler.GroupChatHandler;
+import com.example.chat.data.handler.GroupChatHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
 

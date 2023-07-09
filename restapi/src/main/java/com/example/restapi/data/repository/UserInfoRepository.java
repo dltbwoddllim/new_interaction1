@@ -1,5 +1,5 @@
-package com.example.restapi.repository;
-import com.example.restapi.entity.UserInfoEntity;
+package com.example.restapi.data.repository;
+import com.example.restapi.data.entity.UserInfoEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

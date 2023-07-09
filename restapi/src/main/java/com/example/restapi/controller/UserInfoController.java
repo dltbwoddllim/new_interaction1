@@ -1,6 +1,6 @@
 package com.example.restapi.controller;
-import com.example.restapi.entity.UserInfoEntity;
-import com.example.restapi.repository.UserInfoRepository;
+import com.example.restapi.data.entity.UserInfoEntity;
+import com.example.restapi.data.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

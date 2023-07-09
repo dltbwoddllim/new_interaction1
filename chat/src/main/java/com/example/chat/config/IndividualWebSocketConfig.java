@@ -1,7 +1,6 @@
 package com.example.chat.config;
 
-import com.example.chat.handler.GroupChatHandler;
-import com.example.chat.handler.IndividualChatHandler;
+import com.example.chat.data.handler.IndividualChatHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
